@@ -1,8 +1,13 @@
+import sampleData from "@/db/sample-data";
+import ProductList from "@/components/shared/product/product-list"
 
-const page = () => {
+const Homepage = () => {
+  
   return (
-    <div>page</div>
+    <>
+      <ProductList data={sampleData?.products} title="Newest Arrival" limit={4} />
+    </>
   )
 }
 
-export default page
+export default Homepage
