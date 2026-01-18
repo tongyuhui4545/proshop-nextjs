@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { signUpFormSchema, signInFormSchema } from "../validator";
 import { hashSync } from 'bcrypt-ts-edge'
 import { prisma } from '@/db/prisma'
-import {formatError} from "@/lib/utils";
+import { formatError } from "@/lib/utils";
 
 // Sign in the user with credentials
 export async function signInWithCredentials(_: unknown, formData: FormData) {
@@ -55,10 +55,19 @@ export async function signUpUser(prevState: unknown, formData: FormData) {
 
         return { success: true, message: 'User registered successfully' }
     } catch (error: any) {
-        if(error?.digest?.startsWith("NEXT_REDIRECT")) {
+        if (error?.digest?.startsWith("NEXT_REDIRECT")) {
             throw error
         }
 
-        return {success: false, message: formatError(error) }
+        return { success: false, message: formatError(error) }
     }
+}
+
+//Get user by the ID
+export async function getUserById(userId: string) {
+    const user = await prisma.user.findFirst({
+        where: { id: userId }
+    });
+    if (!user) throw new Error('User not found');
+    return user
 }
