@@ -15,9 +15,9 @@ export const signUpDefaultValues = {
 }
 
 export const shippingAddressDefaultValues = {
-    fullName: 'John Doe',
-    streetAddress: '123 st',
-    city: 'Syd',
-    postalCode: '2160',
-    country: 'Aus'
+    fullName: '',
+    streetAddress: '',
+    city: '',
+    postalCode: '',
+    country: ''
 }
